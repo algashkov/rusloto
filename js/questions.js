@@ -24,7 +24,7 @@ const x = l => `<span class="rb-cross">${l}</span>`;
 // Координаты подобраны под шрифт Rubik 500 (замер по пикселям).
 const INSIDE = {
   'е': { fs: 560, by: 330, wx: 205, wy: 137, ws: 46, color: '#5b8fd9', vb: '10 30 380 320' },
-  'а': { fs: 560, by: 340, wx: 196, wy: 267, ws: 46, color: '#f39a2b', vb: '10 40 380 320' },
+  'а': { fs: 560, by: 340, wx: 184, wy: 266, ws: 42, color: '#f39a2b', vb: '10 40 380 320' },
   'О': { fs: 440, by: 360, wx: 200, wy: 224, ws: 54, color: '#3f6fb0', vb: '10 40 380 335' },
 };
 const inside = (big, small) => {

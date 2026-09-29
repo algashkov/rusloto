@@ -70,36 +70,14 @@
 
   function paintDone() {
     grid.querySelectorAll('.barrel').forEach(c => c.classList.toggle('done', done.has(+c.dataset.n)));
-    $('#doneCount').textContent = done.size;
   }
   paintDone();
 
-  $('#resetBtn').onclick = () => {
-    if (!done.size || confirm('Начать игру заново? Все бочонки снова станут закрытыми.')) {
+  // Клик по логотипу — начать игру заново
+  $('#boardLogo').onclick = () => {
+    if (done.size && confirm('Начать игру заново? Все бочонки снова станут закрытыми.')) {
       done.clear(); save(); paintDone(); Sound.play('boing');
     }
-  };
-
-  $('#randomBtn').onclick = () => {
-    const left = QUESTIONS.map((_, i) => i + 1).filter(n => !done.has(n));
-    if (!left.length) { Sound.play('boing'); return; }
-    const cells = left.map(n => grid.querySelector(`[data-n="${n}"]`));
-    const pick = left[Math.floor(Math.random() * left.length)];
-    Sound.play('roll');
-    let k = 0;
-    const steps = 10;
-    const iv = setInterval(() => {
-      cells.forEach(c => c.classList.remove('lit'));
-      if (k < steps) {
-        cells[Math.floor(Math.random() * cells.length)].classList.add('lit');
-        k++;
-      } else {
-        clearInterval(iv);
-        const cell = grid.querySelector(`[data-n="${pick}"]`);
-        cell.classList.add('lit');
-        setTimeout(() => { cell.classList.remove('lit'); openCard(pick); }, 350);
-      }
-    }, 70);
   };
 
   /* ---------- Слайд ---------- */
