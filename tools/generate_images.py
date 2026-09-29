@@ -57,7 +57,15 @@ OBJECTS = {
     'zayac': 'a grey hare eating a carrot', 'pol': 'a wooden parquet floor with a mop', 'nozhnicy': 'scissors cutting fabric with a measuring tape',
     'kolobok': 'Kolobok, a round smiling yellow bun character from a Russian fairy tale', 'obezyana': 'a monkey hanging on a vine',
     'druzya': 'a group of happy diverse friends waving', 'vorobi': 'a small flock of cute sparrows', 'lampa': 'a glowing light bulb with a book',
-    'nos': 'a funny cartoon boy face in profile with a big nose', 'gulyat': 'a kid happily walking with colorful balloons',
+    'nos': 'a funny cartoon boy face in profile with a big nose',
+    'azbuka': 'a colorful children\'s alphabet primer book lying open with wooden toy letter blocks around it (blocks show only simple shapes, no readable letters)',
+    'bogatyr': 'a friendly kid Russian bogatyr knight with a round shield and a pointed helmet, smiling bravely',
+    'rot': 'a cartoon smiling open mouth with pink lips and white teeth, only the mouth, no face',
+    'shorty': 'a pair of colorful kids summer shorts',
+    'sanki': 'a happy kid pulling a wooden sled up a snowy hill',
+    'rodina': 'a beautiful Russian countryside landscape: white birch trees, green field, a river and a small wooden village house, in a round vignette',
+    'luna': 'a glowing crescent moon over a small dark forest',
+    'kuznechik': 'a cute green grasshopper sitting on grass', 'gulyat': 'a kid happily walking with colorful balloons',
 }
 
 LOGO = ('A bright, fun, glossy 3D logo for a children\'s educational game. The logo text is exactly "РусЛото" '

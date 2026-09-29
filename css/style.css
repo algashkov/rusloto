@@ -232,10 +232,8 @@ img.pic.big { width: clamp(140px, 22vw, 230px); animation: bigPop .7s .1s cubic-
   background: #fffbe0; border-radius: 22px; padding: 18px 28px; box-shadow: inset 0 0 0 3px #fde68a; }
 .rebus img.pic { width: clamp(110px, 17vw, 190px); }
 .rebus .pic.emoji { font-size: clamp(80px, 13vw, 140px); }
-.rb-inside { position: relative; display: grid; place-items: center; }
-.rb-inside .big { font: 500 clamp(260px, 36vw, 400px)/.62 var(--font); color: #4a90d9; padding-bottom: .08em; }
-.rb-inside.up .big { font-size: clamp(190px, 26vw, 280px); line-height: .8; }
-.rb-inside .small { position: absolute; top: 50%; transform: translateY(-50%); font: 500 clamp(36px, 5.4vw, 60px)/1 var(--font); color: #111; background: #fffbe0; padding: 2px 8px; border-radius: 8px; }
+.rb-inside { width: clamp(230px, 34vw, 360px); height: auto; font-family: var(--font); font-weight: 500; }
+.rb-inside-word { fill: #2b1d4a; font-weight: 700; }
 .rb-letters { font: 900 clamp(48px, 9vw, 100px) var(--font); color: #38bdf8; -webkit-text-stroke: 3px #1e40af; paint-order: stroke fill; letter-spacing: -.02em; }
 .rb-comma { font: 700 clamp(90px, 13vw, 150px)/0 Georgia, "Times New Roman", serif; color: #16a34a; align-self: flex-start; margin-top: .25em; letter-spacing: .08em; }
 .rb-letter { font: 900 clamp(80px, 12vw, 140px) var(--font); }
@@ -246,11 +244,27 @@ img.pic.big { width: clamp(140px, 22vw, 230px); animation: bigPop .7s .1s cubic-
 .rb-cross::after { content: ''; position: absolute; left: -10%; right: -10%; top: 50%; height: 6px; background: #3b82f6; transform: rotate(-50deg); }
 .rb-svg { width: clamp(220px, 34vw, 340px); }
 .rb-svg text { font: 700 18px var(--font); fill: #2563eb; stroke: #bfdbfe; stroke-width: .6px; paint-order: stroke; }
-.tiles { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; width: 100%; }
-.tile { background: #fff; border-radius: 16px; aspect-ratio: 1; display: grid; place-items: center; box-shadow: 0 4px 0 rgba(0,0,0,.08); }
-.tile:nth-child(n+10) { transform: translateX(calc(50% + 4px)); }
-.tile .pic.emoji { font-size: clamp(30px, 5vw, 56px); }
-.tile img.pic { width: 90%; }
+.tiles { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+.tiles-row { display: flex; justify-content: center; gap: 10px; flex-wrap: nowrap; }
+.tile { width: clamp(64px, 10.5vw, 104px); aspect-ratio: 1; background: #fff; border-radius: 18px; display: grid; place-items: center; position: relative; box-shadow: 0 4px 0 rgba(0,0,0,.08); }
+.tile .pic.emoji { font-size: clamp(40px, 7vw, 72px); }
+.tile img.pic { width: 92%; }
+.tile b { position: absolute; bottom: -8px; right: -6px; min-width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--candy); color: #fff; font: 900 20px var(--font); box-shadow: 0 0 0 3px #fff; }
+.answer-word.phrase { font-size: clamp(28px, 5vw, 58px); white-space: nowrap; }
+.clouds { display: flex; align-items: center; }
+.clouds .pic { margin-left: -38px; }
+.clouds .pic:first-child { margin-left: 0; }
+.clouds .pic:nth-child(2) { transform: translateY(-26px) scale(.9); }
+.clouds img.pic, .rebus .clouds img.pic { width: clamp(90px, 12vw, 140px); }
+.pic.flip { transform: scaleX(-1); }
+.rb-letter.green { color: #7cc79a; -webkit-text-stroke: 3px #3f8a5c; paint-order: stroke fill; }
+.rb-box { font: 700 clamp(80px, 13vw, 140px)/1 var(--font); letter-spacing: .06em; color: #222; background: #fff;
+  border: 5px solid #333; padding: 10px 40px; box-shadow: 6px 6px 0 rgba(0,0,0,.15); }
+.big-dot { font: 900 160px/.4 var(--font); color: var(--candy); }
+.sounds { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.sounds span { font: 900 clamp(32px, 5vw, 52px) var(--font); color: #fff; background: var(--candy); border-radius: 16px; padding: 4px 14px; }
+.err-count { color: var(--candy); white-space: nowrap; }
 .cipher { font: 700 clamp(22px, 3.4vw, 36px)/1.4 ui-monospace, Menlo, monospace; letter-spacing: .06em; color: #7c3aed; background: #f5f3ff; border-radius: 18px; padding: 14px 20px; word-break: break-all; }
 
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
@@ -262,8 +276,9 @@ img.pic.big { width: clamp(140px, 22vw, 230px); animation: bigPop .7s .1s cubic-
   .board-head { padding-right: 134px; }
   .head-btns { margin-left: 0; width: 100%; }
   .head-btns .btn-3d:first-child { flex: 1; }
-  .tiles { grid-template-columns: repeat(6, 1fr); }
-  .tile:nth-child(n+10) { transform: none; }
+  .tiles-row { gap: 6px; }
+  .tile { width: clamp(40px, 12vw, 64px); border-radius: 12px; }
+  .tile b { min-width: 24px; height: 24px; font-size: 14px; }
   .poem.cols { columns: 1; }
   .word-card, .pair { flex-direction: column; gap: 6px; }
 }
