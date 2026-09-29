@@ -59,6 +59,7 @@ window.GEN_IMAGES = {
  "telefon": "img/telefon.webp",
  "terka": "img/terka.webp",
  "tort": "img/tort.webp",
+ "tucha": "img/tucha.webp",
  "tuchi": "img/tuchi.webp",
  "tykva": "img/tykva.webp",
  "uchenik": "img/uchenik.webp",

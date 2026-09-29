@@ -65,7 +65,8 @@ OBJECTS = {
     'sanki': 'a happy kid pulling a wooden sled up a snowy hill',
     'rodina': 'a beautiful Russian countryside landscape: white birch trees, green field, a river and a small wooden village house, in a round vignette',
     'luna': 'a glowing crescent moon over a small dark forest',
-    'kuznechik': 'a cute green grasshopper sitting on grass', 'gulyat': 'a kid happily walking with colorful balloons',
+    'kuznechik': 'a cute green grasshopper sitting on grass',
+    'tucha': 'a single dark grey heavy storm cloud, puffy, no rain, no drops, no lightning, no face', 'gulyat': 'a kid happily walking with colorful balloons',
 }
 
 LOGO = ('A bright, fun, glossy 3D logo for a children\'s educational game. The logo text is exactly "РусЛото" '

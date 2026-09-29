@@ -19,6 +19,9 @@ function pic(key, emoji, cls = '') {
     : `<span class="pic emoji ${cls}">${emoji}</span>`;
 }
 const cm = n => `<span class="rb-comma">${','.repeat(n)}</span>`;
+// Картинка с «приклеенными» запятыми: before — слева сверху, after — справа сверху
+const withCommas = (picHtml, before = 0, after = 0) =>
+  `<span class="rb-item" style="--nb:${before};--na:${after}">${before ? `<span class="rb-comma-at left">${','.repeat(before)}</span>` : ''}${picHtml}${after ? `<span class="rb-comma-at right">${','.repeat(after)}</span>` : ''}</span>`;
 const x = l => `<span class="rb-cross">${l}</span>`;
 // Ребус «слово внутри буквы»: буква растянута по ширине, слово стоит точно в её пустом месте.
 // Координаты подобраны под шрифт Rubik 500 (замер по пикселям).
@@ -98,7 +101,7 @@ function buildQuestions() {
       a: `<div class="poem">…не корова, а <b>ОБЕЗЬЯНА</b>! 😄</div>${pic('obezyana','🐒','big')}` },
     { cat:'sentence',q: `<p>Найди и исправь ошибки <span class="err-count">(3 ошибки)</span>:</p><div class="poem">В трове трищяли кузнечики.</div>${pic('kuznechik','🦗')}`,
       a: `<div class="poem">В тр<mark>а</mark>ве тр<mark>е</mark>щ<mark>а</mark>ли кузнечики.</div>` },
-    { cat:'rebus',   q: `<p>Разгадай ребус</p><div class="rebus">${cm(1)}<div class="clouds">${pic('tuchi','🌧️')}${pic('tuchi','🌧️')}${pic('tuchi','🌧️')}</div><span class="rb-letter red">Т</span>${pic('el','🌲')}</div>`,
+    { cat:'rebus',   q: `<p>Разгадай ребус</p><div class="rebus nowrap"><span class="rb-item" style="--nb:1;--na:0"><span class="rb-comma-at left">,</span><span class="clouds">${pic('tucha','☁️')}${pic('tucha','☁️')}${pic('tucha','☁️')}</span></span><span class="rb-letter red">Т</span>${pic('el','🌲')}</div>`,
       a: reveal('УЧИТЕЛЬ','uchitel','👩‍🏫','ТУЧИ без первой буквы → УЧИ + Т + ЕЛЬ') },
     { cat:'proverb', q: `<p>Доскажи пословицу:</p><div class="poem">Не имей сто рублей…</div>`,
       a: `<div class="poem">…а имей сто друзей!</div>${pic('druzya','🤝','big')}` },
@@ -119,22 +122,22 @@ function buildQuestions() {
     { cat:'proverb', q: `<p>Доскажи пословицу:</p><div class="poem">Учение — свет…</div>`,
       a: `<div class="poem">…а неученье — тьма!</div>${pic('lampa','💡','big')}` },
     { cat:'quiz',    q: `<p>Найди способ прочитать написанное:</p>
-        <div class="cipher">QWУNЧLИZТJЬZHСVЯ — ВNIСDЕ4ГVДZA SПGРYRИ WWГО FДNИТRWСQЯ</div>`,
+        <div class="cipher">QWУNЧLИZТJЬZHСVЯ<br>ВNIСDЕ4ГVДZA<br>SПGРYRИWWГОFДNИТRWСQЯ</div>`,
       a: `<div class="answer-word small">УЧИТЬСЯ ВСЕГДА ПРИГОДИТСЯ</div><p class="note">Читаем только русские буквы!</p>` },
 
     { cat:'anagram', q: anagram('опла́та','oplata','👛'), a: reveal('ЛОПА́ТА','lopata','⛏️') },
-    { cat:'rebus',   q: `<p>Разгадай ребус</p><div class="rebus">${pic('molotok','🔨')}${cm(3)}${pic('kot','🐈')}${cm(1)}</div>`,
+    { cat:'rebus',   q: `<p>Разгадай ребус</p><div class="rebus">${withCommas(pic('molotok','🔨'), 0, 3)}${withCommas(pic('kot','🐈'), 0, 1)}</div>`,
       a: reveal('МОЛОКО','moloko','🥛','МОЛОТОК без «ток» + КОТ без «т» → МОЛО + КО') },
     { cat:'sharada', q: `<div class="poem">С буквой <em>«К»</em> — фигура без углов,<br>С буквой <em>«Д»</em> — дружить с тобой готов.</div>`,
       a: `<div class="pair">${pic('krug','⭕')}<b><u>к</u>руг</b></div><div class="pair">${pic('drug','🧒')}<b><u>д</u>руг</b></div>` },
     { cat:'sentence',q: `<p>Найди и исправь ошибки <span class="err-count">(2 ошибки)</span>:</p><div class="poem">В чяще щебечют птицы.</div>${pic('vorobi','🐦')}`,
       a: `<div class="poem">В ч<mark>а</mark>ще щебеч<mark>у</mark>т птицы.</div>` },
-    { cat:'rebus',   q: `<p>Разгадай ребус</p><div class="rebus"><span class="rb-letter cyan">УЧ</span>${cm(1)}${pic('venik','🧹')}</div>`,
+    { cat:'rebus',   q: `<p>Разгадай ребус</p><div class="rebus"><span class="rb-letter cyan">УЧ</span>${withCommas(pic('venik','🧹'), 1)}</div>`,
       a: reveal('УЧЕНИК','uchenik','🧑‍🎓','УЧ + ВЕНИК без первой буквы → УЧ + ЕНИК') },
     { cat:'tricky',  q: `<p>Подумай, о чём идёт речь?</p>
         <div class="poem">Его вешают, приходя в уныние;<br>его задирают зазнайки;<br>его суют не в своё дело.</div>`,
       a: reveal('НОС','nos','👃') },
-    { cat:'proverb', q: `<p>Доскажи пословицу:</p><div class="poem">Кончил дело…</div>`,
+    { cat:'proverb', q: `<p>Доскажи пословицу:</p><div class="poem">Сделал дело…</div>`,
       a: `<div class="poem">…гуляй смело!</div>${pic('gulyat','🎈','big')}` },
     { cat:'rebus',   q: `<p>Разгадай ребус</p><div class="rebus"><div class="rb-box">Р1А</div></div>`,
       a: reveal('РОДИНА','rodina','🏞️','Р + ОДИН + А = РОДИНА') },

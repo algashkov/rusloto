@@ -247,10 +247,18 @@ img.pic.big { width: clamp(140px, 22vw, 230px); animation: bigPop .7s .1s cubic-
   background: var(--candy); color: #fff; font: 900 20px var(--font); box-shadow: 0 0 0 3px #fff; }
 .answer-word.phrase { font-size: clamp(28px, 5vw, 58px); white-space: nowrap; }
 .clouds { display: flex; align-items: center; }
-.clouds .pic { margin-left: -38px; }
+.clouds .pic { margin-left: -28px; }
 .clouds .pic:first-child { margin-left: 0; }
-.clouds .pic:nth-child(2) { transform: translateY(-26px) scale(.9); }
-.clouds img.pic, .rebus .clouds img.pic { width: clamp(90px, 12vw, 140px); }
+.clouds img.pic, .rebus .clouds img.pic { width: clamp(80px, 10vw, 120px); }
+.rebus.nowrap { flex-wrap: nowrap; }
+.rebus.nowrap .rb-letter { font-size: clamp(64px, 9vw, 110px); }
+.rebus.nowrap > .pic, .rebus.nowrap > img.pic { width: clamp(90px, 12vw, 150px); }
+/* Запятые ребуса, прижатые к картинке */
+.rb-item { position: relative; display: inline-flex; align-items: center; }
+.rb-comma-at { position: absolute; top: -.05em; font: 700 clamp(80px, 11vw, 130px)/.6 Georgia, "Times New Roman", serif; color: #16a34a; letter-spacing: .02em; pointer-events: none; }
+.rb-comma-at.left { right: calc(100% - 14px); }
+.rb-comma-at.right { left: calc(100% - 14px); }
+.rb-item { --cw: clamp(22px, 3vw, 36px); margin-left: calc(var(--nb, 0) * var(--cw)); margin-right: calc(var(--na, 0) * var(--cw)); }
 .pic.flip { transform: scaleX(-1); }
 .rb-letter.green { color: #7cc79a; -webkit-text-stroke: 3px #3f8a5c; paint-order: stroke fill; }
 .rb-box { font: 700 clamp(80px, 13vw, 140px)/1 var(--font); letter-spacing: .06em; color: #222; background: #fff;
@@ -259,7 +267,7 @@ img.pic.big { width: clamp(140px, 22vw, 230px); animation: bigPop .7s .1s cubic-
 .sounds { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .sounds span { font: 900 clamp(32px, 5vw, 52px) var(--font); color: #fff; background: var(--candy); border-radius: 16px; padding: 4px 14px; }
 .err-count { color: var(--candy); white-space: nowrap; }
-.cipher { font: 700 clamp(22px, 3.4vw, 36px)/1.4 ui-monospace, Menlo, monospace; letter-spacing: .06em; color: #7c3aed; background: #f5f3ff; border-radius: 18px; padding: 14px 20px; word-break: break-all; }
+.cipher { font: 700 clamp(18px, 3.2vw, 36px)/1.5 ui-monospace, Menlo, monospace; letter-spacing: .04em; color: #7c3aed; background: #f5f3ff; border-radius: 18px; padding: 14px 24px; white-space: nowrap; }
 
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
 
