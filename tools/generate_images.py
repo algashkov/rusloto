@@ -67,6 +67,12 @@ LOGO = ('A bright, fun, glossy 3D logo for a children\'s educational game. The l
         'Spelling must be exactly Рус and Лото. Transparent background.')
 
 
+BARREL = ('A single glossy cartoon wooden lotto barrel (small keg) standing upright, straight front view, perfectly symmetric, '
+          'same candy 3D mobile-game style as a bubbly logo: warm caramel wood with glossy highlights, two dark brown metal hoops, '
+          'thick dark purple outline. In the exact center of the barrel front there is a large empty glossy candy-red round badge '
+          'with a thin white rim, completely blank, NO number, NO text. Barrel fills most of the image. Transparent background.')
+
+
 def load_key():
     key = os.environ.get('OPENAI_API_KEY')
     env = ROOT / '.env'
@@ -116,7 +122,7 @@ def write_manifest():
 def main():
     IMG.mkdir(exist_ok=True)
     key = load_key()
-    jobs = {'logo': (LOGO, '1536x1024'), **{k: (f'{v}. {STYLE}', '1024x1024') for k, v in OBJECTS.items()}}
+    jobs = {'logo': (LOGO, '1536x1024'), 'barrel': (BARREL, '1024x1024'), **{k: (f'{v}. {STYLE}', '1024x1024') for k, v in OBJECTS.items()}}
     wanted = sys.argv[1:] or list(jobs)
     with ThreadPoolExecutor(6) as ex:
         for name, status in ex.map(lambda n: generate(key, n, *jobs[n]), wanted):

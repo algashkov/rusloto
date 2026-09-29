@@ -4,6 +4,7 @@ window.GEN_IMAGES = {
  "ananas": "img/ananas.webp",
  "apelsin": "img/apelsin.webp",
  "babochka": "img/babochka.webp",
+ "barrel": "img/barrel.webp",
  "dom": "img/dom.webp",
  "drug": "img/drug.webp",
  "druzya": "img/druzya.webp",

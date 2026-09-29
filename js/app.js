@@ -2,7 +2,8 @@
   const $ = s => document.querySelector(s);
   const QUESTIONS = buildQuestions();
   const STORE = 'rusloto-done';
-  const BARREL_COLORS = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#06b6d4', '#3b82f6', '#8b5cf6', '#ec4899'];
+  const BARREL_COLORS = ['#e63a2e', '#f4a93b', '#ffd66b', '#fff4dc', '#e63a2e', '#f4a93b', '#ffd66b', '#fff4dc'];
+  if (window.GEN_IMAGES.barrel) document.documentElement.style.setProperty('--barrel-img', `url("${new URL(window.GEN_IMAGES.barrel, location.href).href}")`);
 
   let done = new Set();
   try { done = new Set(JSON.parse(localStorage.getItem(STORE) || '[]')); } catch (e) {}
@@ -10,12 +11,10 @@
 
   /* ---------- Фон: летающие бочонки ---------- */
   const bg = $('#bg');
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < 10; i++) {
     const b = document.createElement('span');
     b.className = 'float-barrel';
-    b.textContent = 1 + Math.floor(Math.random() * 90);
     b.style.left = Math.random() * 100 + '%';
-    b.style.setProperty('--c', BARREL_COLORS[i % BARREL_COLORS.length]);
     b.style.setProperty('--s', 0.6 + Math.random() * 0.9);
     b.style.animationDuration = 14 + Math.random() * 16 + 's';
     b.style.animationDelay = -Math.random() * 30 + 's';
@@ -52,6 +51,7 @@
     setTimeout(() => Sound.startMusic(), 900);
     burst(window.innerWidth / 2, window.innerHeight * 0.7, 60);
     setTimeout(() => show('board'), 350);
+    setTimeout(() => grid.classList.add('ready'), 2000);
   };
 
   /* ---------- Поле ---------- */
@@ -61,15 +61,12 @@
     const cell = document.createElement('button');
     cell.className = 'barrel';
     cell.dataset.n = n;
-    cell.style.setProperty('--c', CATS[q.cat].color);
     cell.style.setProperty('--d', (i * 0.025) + 's');
     cell.innerHTML = `<span class="barrel-num">${n}</span><span class="chip"></span>`;
     cell.onmouseenter = () => Sound.play('hover');
     cell.onclick = () => openCard(n);
     grid.appendChild(cell);
   });
-  $('#legend').innerHTML = Object.values(CATS)
-    .map(c => `<span><i style="background:${c.color}"></i>${c.icon} ${c.name}</span>`).join('');
 
   function paintDone() {
     grid.querySelectorAll('.barrel').forEach(c => c.classList.toggle('done', done.has(+c.dataset.n)));
@@ -113,7 +110,6 @@
   function openCard(n) {
     current = n;
     const q = QUESTIONS[n - 1], cat = CATS[q.cat];
-    card.style.setProperty('--c', cat.color);
     $('#cardCat').textContent = `${cat.icon} ${cat.name}`;
     $('#cardNum').textContent = n;
     $('#cardBody').innerHTML = `<div class="side question">${q.q}</div>`;
