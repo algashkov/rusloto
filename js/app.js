@@ -38,6 +38,10 @@
   const paintSound = () => soundBtn.textContent = Sound.muted ? '🔇' : '🔊';
   paintSound();
   soundBtn.onclick = () => { Sound.toggle(); paintSound(); Sound.play('pop'); };
+  const musicBtn = $('#musicBtn');
+  const paintMusic = () => musicBtn.classList.toggle('off', !Sound.musicOn);
+  paintMusic();
+  musicBtn.onclick = () => { Sound.toggleMusic(); paintMusic(); };
 
   /* ---------- Экраны ---------- */
   function show(id) {
@@ -45,6 +49,7 @@
   }
   $('#startBtn').onclick = () => {
     Sound.play('start');
+    setTimeout(() => Sound.startMusic(), 900);
     burst(window.innerWidth / 2, window.innerHeight * 0.7, 60);
     setTimeout(() => show('board'), 350);
   };
@@ -117,6 +122,7 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     Sound.play('open');
+    Sound.duck(true);
     done.add(n); save(); paintDone();
   }
 
@@ -139,6 +145,7 @@
   function closeCard() {
     if (!modal.classList.contains('open')) return;
     Sound.play('close');
+    Sound.duck(false);
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     const cell = grid.querySelector(`[data-n="${current}"]`);

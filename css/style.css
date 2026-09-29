@@ -54,6 +54,8 @@ button { font-family: inherit; cursor: pointer; }
   background: #fff; box-shadow: 0 5px 0 rgba(0,0,0,.18), 0 10px 20px rgba(0,0,0,.12);
   transition: transform .15s;
 }
+.icon-btn.music { right: 76px; }
+.icon-btn.off { opacity: .55; filter: grayscale(1); }
 .icon-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,.18); }
 
 /* ---------- 3D-кнопки ---------- */
@@ -124,7 +126,7 @@ button { font-family: inherit; cursor: pointer; }
 #board { flex-direction: column; align-items: center; padding: 14px 16px 28px; gap: 14px; }
 .board-head {
   width: min(1180px, 100%); display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  padding: 10px 76px 10px 18px; border-radius: 22px;
+  padding: 10px 140px 10px 18px; border-radius: 22px;
   background: rgba(255,255,255,.85); box-shadow: 0 6px 0 rgba(43,29,74,.15);
 }
 .mini-logo { font: 900 30px var(--font); color: #ef4444; }
@@ -271,7 +273,7 @@ img.pic.big { width: clamp(140px, 22vw, 230px); animation: bigPop .7s .1s cubic-
 @media (max-width: 760px) {
   .grid { grid-template-columns: repeat(5, 1fr); }
   .barrel { width: 100%; }
-  .board-head { padding-right: 70px; }
+  .board-head { padding-right: 134px; }
   .head-btns { margin-left: 0; width: 100%; }
   .head-btns .btn-3d:first-child { flex: 1; }
   .tiles { grid-template-columns: repeat(6, 1fr); }
