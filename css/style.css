@@ -64,7 +64,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative; border: 0; color: #fff;
   font: 900 22px var(--font); letter-spacing: .02em;
   padding: 16px 32px; border-radius: 999px;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--b) 75%, #fff), var(--b) 55%);
+  background: linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0) 55%), var(--b);
   box-shadow: 0 8px 0 var(--b2), 0 14px 24px rgba(0,0,0,.25), inset 0 3px 0 rgba(255,255,255,.45);
   text-shadow: 0 2px 0 rgba(0,0,0,.2);
   transition: transform .12s, box-shadow .12s, filter .2s;
